@@ -75,15 +75,15 @@ GenesisDB.prototype = {
         this.version = 1;
 
         //Create an immutable adam0
-        const adam0 = new Adam("Adam0", false);
+        const adam0 = new Adam("Adam0", MutabilityType.IMMUTABLE);
         this.GenesisCharacter.set(0, adam0);
 
         //Create a mutable adam1
-        const adam1 = new Adam("Adam1", true);
+        const adam1 = new Adam("Adam1", MutabilityType.BINARY_MUTABLE);
         this.GenesisCharacter.set(1, adam0);
 
         //Create a mutable adam2
-        const adam2 = new Adam("Adam2", true);
+        const adam2 = new Adam("Adam2", MutabilityType.FULLY_MUTABLE);
         this.GenesisCharacter.set(2, adam0);
     },
 
