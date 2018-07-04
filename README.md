@@ -1,5 +1,5 @@
-# GenesisContract
-### Project:Genesis
+# Project:Genesis
+### 
 ### How to use it
 ### Adam
 ### Collaborator
