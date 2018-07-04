@@ -1,13 +1,33 @@
 "use strict";
 
-// Util method
+const MutabilityType = Object.freeze({
+    IMMUTABLE: 0,
+    BINARY_MUTABLE: 1,
+    FULLY_MUTABLE: 2,
+    TYPE_RANGE: 2
+});
+
+// Util methods
 function randomize(lower, upper) {
     return Math.floor((Math.random() * (upper - lower) + lower));
 }
 
+function checkNumberAndRound(lower, upper, numberToCheck) {
+    if (isNaN(numberToCheck)) {
+        throw Error(numberToCheck + "is not a number");
+    }
+    if (numberToCheck < lower) {
+        return lower;
+    }
+    if (numberToCheck > upper) {
+        return upper;
+    }
+    return numberToCheck;
+}
+
 class Adam {
 
-    constructor(name, isMutable) {
+    constructor(name, mutabilityType) {
         this.name = name;
         this.hp = 100;
         this.mp = 100;
@@ -16,7 +36,7 @@ class Adam {
         this.san = 50;
         this.luck = 50;
         this.charm = 50;
-        this.isMutable = isMutable;
+        this.mutabilityType = mutabilityType;
     }
 
     initialRandomize() {
@@ -28,11 +48,11 @@ class Adam {
         this.san = randomize(0, 100);
         this.luck = randomize(0, 100);
         this.charm = randomize(0, 100);
-        this.isMutable = false;
+        this.mutabilityType = false;
     }
 
-    readData(inAdam) {
-        this.san = inAdam.san;
+    serialize() {
+        return JSON.stringify(this);
     }
 }
 
@@ -55,16 +75,16 @@ GenesisDB.prototype = {
         this.version = 1;
 
         //Create an immutable adam0
-        const Adam0 = new Adam("Adam0", false);
-        this.GenesisCharacter.set(0, Adam0);
+        const adam0 = new Adam("Adam0", false);
+        this.GenesisCharacter.set(0, adam0);
 
         //Create a mutable adam1
-        const Adam1 = new Adam("Adam1", true);
-        this.GenesisCharacter.set(1, Adam1);
+        const adam1 = new Adam("Adam1", true);
+        this.GenesisCharacter.set(1, adam0);
 
         //Create a mutable adam2
-        const Adam2 = new Adam("Adam2", true);
-        this.GenesisCharacter.set(2, Adam2);
+        const adam2 = new Adam("Adam2", true);
+        this.GenesisCharacter.set(2, adam0);
     },
 
     //拿General信息
@@ -97,15 +117,18 @@ GenesisDB.prototype = {
         return this.GenesisCharacter.get(2);
     },
 
-    //随机一个Adam，所有属性在0-100之间随机
+    //随机一个Adam并以string形式返回，所有属性在0-100之间随机
     getAdamRandom: function () {
-        const AdamRandom = new Adam();
-        AdamRandom.initialRandomize();
-        return AdamRandom;
+        const adamRandom = new Adam();
+        adamRandom.initialRandomize();
+        return adamRandom;
     },
 
-    randomize(lower, upper) {
-        return Math.floor((Math.random() * (upper - lower) + lower));
+    //随机一个Adam，所有属性在0-100之间随机
+    getAdamRandomStrFormat: function () {
+        const adamRandom = new Adam();
+        adamRandom.initialRandomize();
+        return adamRandom.serialize();
     },
 
     /**
@@ -116,62 +139,25 @@ GenesisDB.prototype = {
      */
     affectAdam: function (id, isPositiveEffect) {
         const adam = this.GenesisCharacter.get(id);
-        if (!adam.isMutable) {
+        if (adam.mutabilityType === MutabilityType.IMMUTABLE) {
             throw new Error("Adam " + id + " is immutable.");
         }
         if (isPositiveEffect) {
-            adam.hp = adam.hp + randomize(0, 10);
-            adam.mp = adam.mp + randomize(0, 10);
-            adam.str = adam.str + randomize(0, 10);
-            adam.int = adam.int + randomize(0, 10);
-            adam.san = adam.san + randomize(0, 10);
-            adam.luck = adam.luck + randomize(0, 10);
-            adam.charm = adam.charm + randomize(0, 10);
+            adam.hp = checkNumberAndRound(0, 100, adam.hp + randomize(0, 10));
+            adam.mp = checkNumberAndRound(0, 100, adam.mp + randomize(0, 10));
+            adam.str = checkNumberAndRound(0, 100, adam.str + randomize(0, 10));
+            adam.int = checkNumberAndRound(0, 100, adam.int + randomize(0, 10));
+            adam.san = checkNumberAndRound(0, 100, adam.san + randomize(0, 10));
+            adam.luck = checkNumberAndRound(0, 100, adam.luck + randomize(0, 10));
+            adam.charm = checkNumberAndRound(0, 100, adam.charm + randomize(0, 10));
         } else {
-            adam.hp = adam.hp + randomize(0, 10);
-            adam.mp = adam.mp + randomize(0, 10);
-            adam.str = adam.str + randomize(0, 10);
-            adam.int = adam.int + randomize(0, 10);
-            adam.san = adam.san + randomize(0, 10);
-            adam.luck = adam.luck + randomize(0, 10);
-            adam.charm = adam.charm + randomize(0, 10);
-        }
-
-        if (adam.hp < 0) {
-            adam.hp = 0;
-        }
-        if (adam.hp > 100) {
-            adam.hp = 100;
-        }
-        if (adam.mp < 0) {
-            adam.mp = 0;
-        }
-        if (adam.mp > 100) {
-            adam.mp = 100;
-        }
-        if (adam.str < 0) {
-            adam.str = 0;
-        }
-        if (adam.str > 100) {
-            adam.str = 100;
-        }
-        if (adam.int < 0) {
-            adam.int = 0;
-        }
-        if (adam.int > 100) {
-            adam.int = 100;
-        }
-        if (adam.san < 0) {
-            adam.san = 0;
-        }
-        if (adam.san > 100) {
-            adam.san = 100;
-        }
-        if (adam.luck < 0) {
-            adam.luck = 0;
-        }
-        if (adam.charm > 100) {
-            adam.charm = 100;
+            adam.hp = checkNumberAndRound(0, 100, adam.hp - randomize(0, 10));
+            adam.mp = checkNumberAndRound(0, 100, adam.mp - randomize(0, 10));
+            adam.str = checkNumberAndRound(0, 100, adam.str - randomize(0, 10));
+            adam.int = checkNumberAndRound(0, 100, adam.int - randomize(0, 10));
+            adam.san = checkNumberAndRound(0, 100, adam.san - randomize(0, 10));
+            adam.luck = checkNumberAndRound(0, 100, adam.luck - randomize(0, 10));
+            adam.charm = checkNumberAndRound(0, 100, adam.charm - randomize(0, 10));
         }
 
         this.GenesisCharacter.set(id, adam);
@@ -180,76 +166,48 @@ GenesisDB.prototype = {
 
     setAdamAttributes: function (id, hp, mp, str, int, san, luck, charm) {
         const adam = this.GenesisCharacter.get(id);
-        if (!adam.isMutable) {
+        if (adam.mutabilityType === MutabilityType.IMMUTABLE) {
             throw new Error("Adam " + id + " is immutable.");
         }
-        adam.hp = hp;
-        adam.mp = mp;
-        adam.str = str;
-        adam.int = int;
-        adam.san = san;
-        adam.luck = luck;
-        adam.charm = charm;
 
-        if (adam.hp < 0) {
-            adam.hp = 0;
-        }
-        if (adam.hp > 100) {
-            adam.hp = 100;
-        }
-        if (adam.mp < 0) {
-            adam.mp = 0;
-        }
-        if (adam.mp > 100) {
-            adam.mp = 100;
-        }
-        if (adam.str < 0) {
-            adam.str = 0;
-        }
-        if (adam.str > 100) {
-            adam.str = 100;
-        }
-        if (adam.int < 0) {
-            adam.int = 0;
-        }
-        if (adam.int > 100) {
-            adam.int = 100;
-        }
-        if (adam.san < 0) {
-            adam.san = 0;
-        }
-        if (adam.san > 100) {
-            adam.san = 100;
-        }
-        if (adam.luck < 0) {
-            adam.luck = 0;
-        }
-        if (adam.charm > 100) {
-            adam.charm = 100;
-        }
+        adam.hp = checkNumberAndRound(0, 100, hp);
+        adam.mp = checkNumberAndRound(0, 100, mp);
+        adam.str = checkNumberAndRound(0, 100, str);
+        adam.int = checkNumberAndRound(0, 100, int);
+        adam.san = checkNumberAndRound(0, 100, san);
+        adam.luck = checkNumberAndRound(0, 100, luck);
+        adam.charm = checkNumberAndRound(0, 100, charm);
 
         this.GenesisCharacter.set(id, adam);
         return this.GenesisCharacter.get(id);
     },
 
-    saveAdam: function (saveAdam) {
-        const AdamInsert = new Adam();
+    saveAdam: function (jsonStr) {
+        let adamJson;
+        try {
+            let replaced = jsonStr.substr(0, jsonStr.lastIndexOf("}") + 1);
+            replaced = replaced.replace(/^.+?{/,'{').replace(/\\/g, '').replace(/(")+/g, '\"');
+            adamJson = JSON.parse(replaced);
+        } catch (err) {
+            throw new Error("Errored when deserialize JSON: " + err.message);
+        }
+        const adamToInsert = new Adam();
 
-        if (this.checkLegal(saveAdam)) {
-            AdamInsert.name = saveAdam.name;
-            AdamInsert.hp = saveAdam.hp;
-            AdamInsert.mp = saveAdam.mp;
-            AdamInsert.str = saveAdam.str;
-            AdamInsert.int = saveAdam.int;
-            AdamInsert.san = saveAdam.san;
-            AdamInsert.luck = saveAdam.luck;
-            AdamInsert.charm = saveAdam.charm;
-            AdamInsert.isMutable = saveAdam.isMutable;
+        if (this.checkLegal(adamJson)) {
+            adamToInsert.name = adamJson.name;
+            adamToInsert.hp = checkNumberAndRound(0, 100, adamJson.hp);
+            adamToInsert.mp = checkNumberAndRound(0, 100, adamJson.mp);
+            adamToInsert.str = checkNumberAndRound(0, 100, adamJson.str);
+            adamToInsert.int = checkNumberAndRound(0, 100, adamJson.int);
+            adamToInsert.san = checkNumberAndRound(0, 100, adamJson.san);
+            adamToInsert.luck = checkNumberAndRound(0, 100, adamJson.luck);
+            adamToInsert.charm = checkNumberAndRound(0, 100, adamJson.charm);
+            adamToInsert.mutabilityType = adamJson.mutabilityType;
 
-            this.GenesisCharacter.set(this.characterNo, AdamInsert);
+            this.GenesisCharacter.set(this.characterNo, adamToInsert);
             this.characterNo++;
         } else {
-            throw new Error("Data Error,Adam can only have stats between 0 - 100");
+            throw new Error("Data Error, Adam can only have stats between 0 - 100");
         }
     },
 
@@ -269,7 +227,7 @@ GenesisDB.prototype = {
             return false;
         } else if (adamToSave.charm < 0 || adamToSave.charm > 100) {
             return false;
-        } else if (typeof(adamToSave.isMutable) === "boolean") {
+        } else if (adamToSave.mutabilityType < 0 || adamToSave.mutabilityType > MutabilityType.TYPE_RANGE) {
             return false;
         }
 
