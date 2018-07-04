@@ -273,7 +273,7 @@ GenesisDB.prototype = {
             return false;
         }
 
-        return 1;
+        return true;
     }
 };
 
