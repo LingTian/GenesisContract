@@ -3,3 +3,74 @@
 .hotline22{ width:180px; height:30px;border-radius: 5px; background:#8D8D8D; line-height:30px; text-align:center; color:#fff;font-size:13px;}
 .hotline23{ width:180px; height:30px;border-radius: 5px; background:#dddd22; line-height:30px; text-align:center; color:#fff;font-size:13px;}
 .hotline24{ width:180px; height:30px;border-radius: 5px; background:#92B8B1; line-height:30px; text-align:center; color:#fff;font-size:13px;}
+.button {
+    position: relative;
+    background-color: #8D8D8D;
+    border: none;
+    font-size: 12px;
+    color: #FFFFFF;
+    padding: 20px;
+    width: 200px;
+    text-align: center;
+    -webkit-transition-duration: 0.4s; /* Safari */
+    transition-duration: 0.4s;
+    text-decoration: none;
+    overflow: hidden;
+    cursor: pointer;
+}
+
+.button:after {
+    content: "";
+    background: #fff;
+    display: block;
+    position: absolute;
+    padding-top: 300%;
+    padding-left: 350%;
+    margin-left: -20px!important;
+    margin-top: -120%;
+    opacity: 0;
+    transition: all 0.8s
+}
+
+.button:active:after {
+    padding: 0;
+    margin: 0;
+    opacity: 1;
+    transition: 0s
+}
+
+.button1 {
+    position: relative;
+    background-color: #1E9FFF;
+    border: none;
+    font-size: 12px;
+    color: #FFFFFF;
+    padding: 20px;
+    width: 200px;
+    text-align: center;
+    -webkit-transition-duration: 0.4s; /* Safari */
+    transition-duration: 0.4s;
+    text-decoration: none;
+    overflow: hidden;
+    cursor: pointer;
+}
+
+.button1:after {
+    content: "";
+    background: #fff;
+    display: block;
+    position: absolute;
+    padding-top: 300%;
+    padding-left: 350%;
+    margin-left: -20px!important;
+    margin-top: -120%;
+    opacity: 0;
+    transition: all 0.8s
+}
+
+.button1:active:after {
+    padding: 0;
+    margin: 0;
+    opacity: 1;
+    transition: 0s
+}

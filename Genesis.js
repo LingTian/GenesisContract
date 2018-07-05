@@ -150,16 +150,21 @@ GenesisDB.prototype = {
     },
 
     /**
-     * Do a positive or negative effect to the adam with given Id
-     * @param id: adam id
+     * Do a positive or negative effect to the character with given Id
+     * @param id: character id
      * @param isPositiveEffect: if the effect is positive or negative
      * @returns {*}
      */
     affectCharacter: function (id, isPositiveEffect) {
         const character = this.GenesisCharacter.get(id);
         if (character.mutabilityType === MutabilityType.IMMUTABLE) {
-            throw new Error("Adam " + id + " is immutable.");
+            throw new Error("character " + id + " is immutable.");
         }
+        if (character.mutabilityType === MutabilityType.BINARY_MUTABLE) {
+            throw new Error("character " + id + " need to be BINARY_MUTABLE.");
+        }
+
+
         if (parseBoolean(isPositiveEffect)) {
             character.hp = checkIntAndRound(0, 100, character.hp + randomize(0, 10));
             character.mp = checkIntAndRound(0, 100, character.mp + randomize(0, 10));
@@ -185,7 +190,10 @@ GenesisDB.prototype = {
     setCharacterAttributes: function (id, hp, mp, str, int, san, luck, charm) {
         const character = this.GenesisCharacter.get(id);
         if (character.mutabilityType === MutabilityType.IMMUTABLE) {
-            throw new Error("Adam " + id + " is immutable.");
+            throw new Error("Character " + id + " is immutable.");
+        }
+        if (character.mutabilityType != MutabilityType.FULLY_MUTABLE) {
+            throw new Error("Character " + id + " need to be FULLY_MUTABLE.");
         }
 
         character.hp = checkIntAndRound(0, 100, hp);
@@ -225,7 +233,7 @@ GenesisDB.prototype = {
             this.GenesisCharacter.set(this.characterNo, characterToInsert);
             this.characterNo++;
         } else {
-            throw new Error("Data Error, Adam can only have stats between 0 - 100");
+            throw new Error("Data Error, character can only have stats between 0 - 100");
         }
     },
 
