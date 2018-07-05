@@ -218,21 +218,16 @@ GenesisDB.prototype = {
             throw new Error("Errored when deserialize JSON: " + err);
         }
 
-        let characterToInsert;
-        try {
-            characterToInsert = new Character(characterJson.name,
-                checkIntAndRound(0, MutabilityType.MAX_TYPE_SYMBOL, characterJson.mutabilityType));
+        const characterToInsert = new Character(characterJson.name,
+            checkIntAndRound(0, MutabilityType.MAX_TYPE_SYMBOL, characterJson.mutabilityType));
 
-            characterToInsert.hp = checkIntAndRound(0, 100, characterJson.hp);
-            characterToInsert.mp = checkIntAndRound(0, 100, characterJson.mp);
-            characterToInsert.str = checkIntAndRound(0, 100, characterJson.str);
-            characterToInsert.int = checkIntAndRound(0, 100, characterJson.int);
-            characterToInsert.san = checkIntAndRound(0, 100, characterJson.san);
-            characterToInsert.luck = checkIntAndRound(0, 100, characterJson.luck);
-            characterToInsert.charm = checkIntAndRound(0, 100, characterJson.charm);
-        } catch (err) {
-            throw new Error("Errored when deserialize JSON: " + err);
-        }
+        characterToInsert.hp = checkIntAndRound(0, 100, characterJson.hp);
+        characterToInsert.mp = checkIntAndRound(0, 100, characterJson.mp);
+        characterToInsert.str = checkIntAndRound(0, 100, characterJson.str);
+        characterToInsert.int = checkIntAndRound(0, 100, characterJson.int);
+        characterToInsert.san = checkIntAndRound(0, 100, characterJson.san);
+        characterToInsert.luck = checkIntAndRound(0, 100, characterJson.luck);
+        characterToInsert.charm = checkIntAndRound(0, 100, characterJson.charm);
 
         if (this.checkLegal(characterToInsert)) {
             this.GenesisCharacter.set(this.characterNo, characterToInsert);
