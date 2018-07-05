@@ -10,7 +10,7 @@ var nebulas = require("nebulas"),
     Account = nebulas.Account,
     neb = new nebulas.Neb();
 neb.setRequest(new nebulas.HttpRequest("https://mainnet.nebulas.io"));
-var dappAddress = "n1g2FKgTFVaud2v8CAnrh6dF4WW4k8gkDEC";
+var dappAddress = "n1p28QpgYWfqgFuNqPFS5qtQdEFqqzDG4Qk";
 
 var readAdam0 = document.getElementById("readAdam0");
 var readAdam1 = document.getElementById("readAdam1");
@@ -328,7 +328,7 @@ function saveToAdam2(resp) {
             console.log("********* call smart contract \"sendTransaction\" *****************")
 
             var func = "setCharacterAttributes";
-            var args = "[\"" + 2 + "\",\"" + resultString.hp + "\",\"" + resultString.mp + "\",\"" + resultString.str + "\",\"" + resultString.int + "\",\"" + resultString.san + "\",\"" + resultString.luck + "\",\"" +resultString.charm + "\"]";
+            var args = "[" + 2 + ",\"" + resultString.hp + "\",\"" + resultString.mp + "\",\"" + resultString.str + "\",\"" + resultString.int + "\",\"" + resultString.san + "\",\"" + resultString.luck + "\",\"" +resultString.charm + "\"]";
             console.log(args);
 
 
@@ -351,10 +351,10 @@ function saveToAdam2(resp) {
 
 function insertIntoCharacter(resp) {
     var result = resp.result;
-    var resultString = JSON.parse(result);
-    console.log(resultString);
+    // var resultString = JSON.parse(result);
+    console.log("raw:"+result);
 
-    layer.msg('<img src="1.png" height="60" width="60"></img><div>信息列表</div><br><div>随机Json: '+resultString+'</div>', {
+    layer.msg('<img src="1.png" height="60" width="60"></img><div>信息列表</div><br><div>随机Json: '+result+'</div>', {
         time: 0 //不自动关闭
         ,
         anim: 0,
@@ -370,7 +370,7 @@ function insertIntoCharacter(resp) {
             console.log("********* call smart contract \"sendTransaction\" *****************")
 
             var func = "insertCharacter";
-            var args = "[\"" + resultString + "\"]";
+            var args = "[" + result + "]";
             console.log(args);
 
 
