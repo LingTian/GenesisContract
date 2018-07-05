@@ -10,7 +10,7 @@ var nebulas = require("nebulas"),
     Account = nebulas.Account,
     neb = new nebulas.Neb();
 neb.setRequest(new nebulas.HttpRequest("https://mainnet.nebulas.io"));
-var dappAddress = "n1p28QpgYWfqgFuNqPFS5qtQdEFqqzDG4Qk";
+var dappAddress = "n1r59HEWHF3bLudBZnpdhhxrdkKNGz1nBKb";
 
 var readAdam0 = document.getElementById("readAdam0");
 var readAdam1 = document.getElementById("readAdam1");
