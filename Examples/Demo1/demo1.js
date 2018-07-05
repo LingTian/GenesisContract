@@ -10,7 +10,7 @@ var nebulas = require("nebulas"),
     Account = nebulas.Account,
     neb = new nebulas.Neb();
 neb.setRequest(new nebulas.HttpRequest("https://mainnet.nebulas.io"));
-var dappAddress = "n1gyd1t2fdm9TiEwW6HX5MMyh5uNzHVyU9H";
+var dappAddress = "n1y5JrSsop4kv6bRX8aCvGMLP4SZfvvLk4L";
 
 var readAdam0 = document.getElementById("readAdam0");
 var readAdam1 = document.getElementById("readAdam1");
@@ -130,6 +130,49 @@ function getAdam2(){
 
 }
 
+
+function posAffectAdam1(){
+
+    function realsave() {
+
+
+        var to = dappAddress;
+        var value = 0;
+        console.log("********* call smart contract \"sendTransaction\" *****************")
+
+        var func = "dnamerge"
+        //var args = "[\"" + nextid + "\",\"" +1+ "\"]";
+        var args = "[\"" + 1 + "\", + true +\"]";
+        console.log(args);
+
+
+        nebPay.call(to, value, func, args, {
+            qrcode: {
+                showQRCode: false
+            },
+            goods: {
+                name: "test",
+                desc: "test goods"
+            },
+            listener: cbCallDapp
+        });
+
+    }
+
+}
+
+function cbCallDapp(resp) {
+    console.log("callback resp: " + JSON.stringify(resp))
+    if (resp != 'Error: Transaction rejected by user') {
+        layer.msg('已经成功保存DNA，重置数据中..');
+
+    } else {
+        layer.msg('放弃保存DNA，重置数据中..');
+
+
+    }
+
+}
 
 function logAdam(resp) {
     var result = resp.result;

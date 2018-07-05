@@ -2,7 +2,7 @@
 ### About
 Project Genesis is a project which get innovations from blockchains. In blockchain we enjoy to design consensus, anonymous & decentralized projects. Base on this idea I start this project Genesis. It first start from a transparent smartcontract base on Nebulas. In the contract, every developer can use Adam (maybe the first man into Oasis XD) freely, Different developer may use Adam innovatively in any posistion. Such as in one game Adam is a RPG main character, while in the other Adam is the final Boss. It is much more easier for DApp developers to have consensus on 1 character than design a brand new game base on others smart contract. This is also meaningful beacause if 1 game contain Adam is hot, the fans may want to checkout other game contain Adam. Adam doesn't belong to anyone or any organization, I do not have any owner/priority in Genesis Contract. So, it is a real "blockchain" style project and we can make Adam present in millions games. It is really an excited project and I you enjoy it. If you are interested, please use Adam in your games and let the world see what we can do in blockchain!
 ### How to use it
-###Contract Address: n1gyd1t2fdm9TiEwW6HX5MMyh5uNzHVyU9H
+###Contract Address: n1y5JrSsop4kv6bRX8aCvGMLP4SZfvvLk4L
 
 The first contract is base on Nebulas. 
 Everyone can use Adam easily.
