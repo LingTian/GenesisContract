@@ -23,7 +23,7 @@ getAdam0();
 * Randomize Adam
 
 ```javascript
-getAdamRandom();
+getCharacterRandom();
 ```
 
 Adam have name,hp,mp,str,int,san,luck,charm and isMutable. getAdam0 will return Adam with initial stat and get AdamRandom will return Adam with 0-100 random stat on each attribute.
@@ -32,7 +32,7 @@ Adam have name,hp,mp,str,int,san,luck,charm and isMutable. getAdam0 will return 
 
 ```javascript
 getAdam1();
-affectAdam(id,isPositiveEffect);
+affectCharacter(id,isPositiveEffect);
 ```
 
 Adam1 is a mutable Adam. Each developer can give positive/negative effect on Adam1. It is designed becasue in some non-RPG game developers may want to use it easily. They can use Adam in such a way if Adam died, it will have negative effect and if Adam wins, it will have positive effect. If Adam1 is a main character in the running game and he always dies, then it may decrease the stats of another Adam in an RPG game as a BOSS. So, to balance the game each developer can use scale on Adam1. It will provide more random and interesting effects hiddenly in different games.
@@ -41,13 +41,16 @@ Adam1 is a mutable Adam. Each developer can give positive/negative effect on Ada
 
 ```javascript
 getAdam2();
-affectAdam(id,isPositiveEffect);
-setAdamAttributes(id, hp, mp, str, int, san, luck, charm);
+affectCharacter(id,isPositiveEffect);
+setCharacterAttributes(id, hp, mp, str, int, san, luck, charm);
 ```
 
 You can set direct data on Adam2 and I think you are much more familiar with Adam now.
 
 * AdamX
+```javascript
+insertCharacter(jsonStr);
+```
 
 You can also customize new Adams with new stats, new consensus mechanism. Let's start Genesis! 
 
