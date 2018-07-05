@@ -1,5 +1,7 @@
 "use strict";
 
+const VERSION = 1;
+
 const MutabilityType = Object.freeze({
     IMMUTABLE: 0,
     BINARY_MUTABLE: 1,
@@ -90,7 +92,7 @@ GenesisDB.prototype = {
     init: function () {
         this.characterNo = 3;
         this.callNo = 0;
-        this.version = 1;
+        this.version = VERSION;
 
         //Create an immutable adam0
         const adam0 = new Character("Adam0", MutabilityType.IMMUTABLE);
@@ -103,6 +105,11 @@ GenesisDB.prototype = {
         //Create a mutable adam2
         const adam2 = new Character("Adam2", MutabilityType.FULLY_MUTABLE);
         this.GenesisCharacter.set(2, adam2);
+    },
+
+    // Get version of the contract.
+    getVersion: function () {
+        return this.version;
     },
 
     //拿General信息
