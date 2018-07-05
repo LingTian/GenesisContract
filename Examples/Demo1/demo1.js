@@ -21,7 +21,7 @@ var giveAdam1Neg = document.getElementById("giveAdam1Neg");
 var giveAdam2Value = document.getElementById("giveAdam2Value");
 var newRandomAdamX = document.getElementById("newRandomAdamX");
 var getCharacterNo = document.getElementById("getCharacterNo");
-
+var getCharacterById = document.getElementById("getCharacterById");
 readAdam0.onclick=safeCallgetAdam0;
 readAdam1.onclick=safeCallgetAdam1;
 readAdam2.onclick=safeCallgetAdam2;
@@ -31,6 +31,7 @@ giveAdam1Neg.onclick=negAffectAdam1;
 giveAdam2Value.onclick=safeCallSetAdam2;
 newRandomAdamX.onclick=safeCallnewRandomAdamX;
 getCharacterNo.onclick=safeGetCharacterNo;
+getCharacterById.onclick=getCharacterByIdfun;
 //to check if the extension is installed
 //if the extension is installed, var "webExtensionWallet" will be injected in to web page
 if (typeof(webExtensionWallet) != "undefined") {
@@ -285,6 +286,25 @@ function logAdam(resp) {
 
 }
 
+function logCharacterNo(resp) {
+    console.log(resp);
+    var result = resp.result;
+    var resultString = JSON.parse(result);
+    console.log(resultString);
+
+    layer.msg('<img src="1.png" height="60" width="60"></img><div>人物人数</div><br><div>NO: '+resultString+'</div>', {
+        time: 0 //不自动关闭
+        ,
+        anim: 0,
+        btnAlign: 'c',
+        shade: 0.2,
+        closeBtn: 0,
+        area: ['480px', '300px'],
+        offset: 'c',shadeClose:1
+    });
+
+}
+
 function saveToAdam2(resp) {
     var result = resp.result;
     var resultString = JSON.parse(result);
@@ -369,6 +389,59 @@ function insertIntoCharacter(resp) {
 
 }
 
+function getCharacterByIdfun(){
+    layer.prompt({title: '输入想要读取的人物的id', formType: 3}, function (pass, index) {
+        layer.msg('读取人物编号<' + pass + '>资料中');
+
+        var func = "getCharacter";
+//        var args = "[\"" + pass + "\"]";
+        var from = Account.NewAccount().getAddressString();
+
+        var args = pass;
+        var callArgs = JSON.stringify([args]);
+        var value = "0";
+        var nonce = "0"
+        var gas_price = "1000000"
+        var gas_limit = "2000000"
+        var contract = {
+            "function": func,
+            "args": callArgs
+        }
+
+        neb.api.call(from,dappAddress,value,nonce,gas_price,gas_limit,contract).then(function (resp) {
+            logAdam(resp)
+        }).catch(function (err) {
+
+            console.log("error:" + err.message)
+        })
+    });
+
+}
+
+function tryGetCharacterNo(){
+    var func = "getCharacterNo";
+    var from = Account.NewAccount().getAddressString();
+    var args = 0;
+    var callArgs = JSON.stringify([args]);
+    var value = "0";
+    var nonce = "0"
+    var gas_price = "1000000"
+    var gas_limit = "2000000"
+    var contract = {
+        "function": func,
+        "args": callArgs
+    }
+
+    neb.api.call(from, dappAddress, value, nonce, gas_price, gas_limit, contract).then(function (resp) {
+        layer.closeAll('loading');
+        logCharacterNo(resp)
+    }).catch(function (err) {
+        console.log("net work unstable, rereading..." );
+        safeGetCharacterNo();
+    })
+
+
+}
 function safeCallSetAdam2(){
     layer.load(1);
     setTimeout(setAdam2Value, 100);
@@ -397,11 +470,12 @@ function safeCallnewRandomAdamX(){
     layer.load(1);
     setTimeout(getNewRandomAdamX, 100);
 }
-
 function safeGetCharacterNo(){
     layer.load(1);
     setTimeout(tryGetCharacterNo, 100);
 }
+
+
 
 
 
