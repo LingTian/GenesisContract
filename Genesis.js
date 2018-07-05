@@ -1,7 +1,16 @@
 "use strict";
 
+/**
+ * Version 1 Genesis contract. Please save another copy of your data locally during experiment.
+ * we may update/transfer/cross chain in next version so please make a backup file.
+ */
 const VERSION = 1;
 
+/**
+ * IMMUTABLE means the character cannot be affected forever.
+ * BINARY_MUTABLE means the character can be affected by affectCharacter function in the contract.
+ * FULLY_MUTABLE means the character can be affected & setattributes in the contract.
+ */
 const MutabilityType = Object.freeze({
     IMMUTABLE: 0,
     BINARY_MUTABLE: 1,
@@ -9,7 +18,9 @@ const MutabilityType = Object.freeze({
     MAX_TYPE_SYMBOL: 2
 });
 
-// Util methods
+/**
+ * Utility Method
+ */
 function randomize(lower, upper) {
     return Math.floor((Math.random() * (upper - lower) + lower));
 }
@@ -45,6 +56,12 @@ function parseBoolean (string) {
     throw Error(string + " is not a boolean");
 }
 
+/**
+ * Character constructor
+ * @param name: character name
+ * @param mutabilityType: if the effect is positive or negative
+ *
+ */
 class Character {
 
     constructor(name, mutabilityType) {
@@ -126,30 +143,51 @@ GenesisDB.prototype = {
         return this.callNo;
     },
 
-    //拿Adam0不可改变，固定属性，故事的开始～
+    /**
+     * getAdam0
+     * get Adam0 directly.
+     * try this method when you first join Genesis
+     */
     getAdam0: function () {
         this.callNo++;
         return this.GenesisCharacter.get(0);
     },
 
+    /**
+     * getAdam1
+     * get Adam1 directly.
+     */
     getAdam1: function () {
         this.callNo++;
         return this.GenesisCharacter.get(1);
     },
 
+    /**
+     * getAdam2
+     * get Adam2 directly.
+     */
     getAdam2: function () {
         this.callNo++;
         return this.GenesisCharacter.get(2);
     },
 
     //随机一个Adam并以string形式返回，所有属性在0-100之间随机
+    /**
+     * getCharacterRandom
+     * get a random Adam and return.
+     * all stats between 0-100.
+     */
     getCharacterRandom: function () {
         const characterRandom = new Character();
         characterRandom.initialRandomize();
         return characterRandom;
     },
 
-    //随机一个Adam，所有属性在0-100之间随机
+    /**
+     * getCharacterRandom
+     * get a random Adam and return as a string.
+     * all stats between 0-100.
+     */
     getCharacterRandomStrFormat: function () {
         const characterRandom = new Character();
         characterRandom.initialRandomize();
@@ -190,6 +228,19 @@ GenesisDB.prototype = {
         return this.GenesisCharacter.get(id);
     },
 
+    /**
+     * Set character attributes directly
+     * @param id: character id
+     * @param hp: character hp
+     * @param mp: character mp
+     * @param str: character str
+     * @param int: character int
+     * @param san: character san
+     * @param luck: character luck
+     * @param charm: character charm
+     *
+     * @returns {*}
+     */
     setCharacterAttributes: function (id, hp, mp, str, int, san, luck, charm) {
         const character = this.GenesisCharacter.get(id);
         if (character.mutabilityType !== MutabilityType.FULLY_MUTABLE) {
@@ -208,6 +259,13 @@ GenesisDB.prototype = {
         return this.GenesisCharacter.get(id);
     },
 
+    /**
+     * Insert Character
+     * @param jsonStr: new character json
+     * check demo1 examples to get a quick start
+     *
+     * @returns {*}
+     */
     insertCharacter: function (jsonStr) {
         let characterJson;
         try {
