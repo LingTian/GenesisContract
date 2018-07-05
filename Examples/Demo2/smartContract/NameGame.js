@@ -102,13 +102,13 @@ getAdam0: function() {
 },
     
     //随机一个Adam，所有属性在0-100之间随机
-getAdamRandom:function(){
+getCharacterRandom:function(){
     var AdamRandom= new Adam();
     AdamRandom.initialRandomize();
     return AdamRandom;
 },
     
-saveAdam:function(saveAdam){
+insertCharacter:function(saveAdam){
     var AdamInsert= new Adam();
     
     if(this.checkLegal(saveAdam)){

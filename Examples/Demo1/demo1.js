@@ -84,7 +84,7 @@ function getAdam1(){
 }
 function getAdamRand(){
 
-    var func = "getAdamRandom";
+    var func = "getCharacterRandom";
     var from = Account.NewAccount().getAddressString();
     var args = 0;
     var callArgs = JSON.stringify([args]);
