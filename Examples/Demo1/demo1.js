@@ -10,7 +10,7 @@ var nebulas = require("nebulas"),
     Account = nebulas.Account,
     neb = new nebulas.Neb();
 neb.setRequest(new nebulas.HttpRequest("https://mainnet.nebulas.io"));
-var dappAddress = "n1s7tm6ECMfgjsDRpZYZoW2qHN28ZqxR98f";
+var dappAddress = "n1g2FKgTFVaud2v8CAnrh6dF4WW4k8gkDEC";
 
 var readAdam0 = document.getElementById("readAdam0");
 var readAdam1 = document.getElementById("readAdam1");
@@ -22,6 +22,7 @@ var giveAdam2Value = document.getElementById("giveAdam2Value");
 var newRandomAdamX = document.getElementById("newRandomAdamX");
 var getCharacterNo = document.getElementById("getCharacterNo");
 var getCharacterById = document.getElementById("getCharacterById");
+var download= document.getElementById("download");
 readAdam0.onclick=safeCallgetAdam0;
 readAdam1.onclick=safeCallgetAdam1;
 readAdam2.onclick=safeCallgetAdam2;
@@ -32,6 +33,7 @@ giveAdam2Value.onclick=safeCallSetAdam2;
 newRandomAdamX.onclick=safeCallnewRandomAdamX;
 getCharacterNo.onclick=safeGetCharacterNo;
 getCharacterById.onclick=getCharacterByIdfun;
+download.onclick=downloadlink;
 //to check if the extension is installed
 //if the extension is installed, var "webExtensionWallet" will be injected in to web page
 if (typeof(webExtensionWallet) != "undefined") {
@@ -442,6 +444,18 @@ function tryGetCharacterNo(){
 
 
 }
+function downloadlink(){
+    layer.msg("<img src=\"1.png \" height=\"60\" width=\"60\"><br>" +
+
+        "网页下载地址:<br>" +
+        "<a href=\"https:\/\/github.com\/ChengOrangeJu\/WebExtensionWallet\">https://github.com/ChengOrangeJu/WebExtensionWallet\</a>" +
+        "<br>苹果钱包下载地址(海外):<br><a href=\"https:\/\/itunes.apple.com\/hk\/app\/nas-nano\/id1281191905\?l=zh\&ls=1\&mt=8\">https://itunes.apple.com/hk/app/nas-nano/id1281191905?l=zh&ls=1&mt=8\</a><br>安卓钱包下载地址:<br><a href=\"https:\/\/nano.nebulas.io\/index_cn.html\">https://nano.nebulas.io/index_cn.html\</a><br><br>原创作者:ajccom ", {
+        time: 0 //不自动关闭
+        , anim: 0, btnAlign: 'c', shade: 0.3, area: ['50%', '50%'], shadeClose:1
+
+    });
+}
+
 function safeCallSetAdam2(){
     layer.load(1);
     setTimeout(setAdam2Value, 100);
