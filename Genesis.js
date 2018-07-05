@@ -160,10 +160,6 @@ GenesisDB.prototype = {
         if (character.mutabilityType === MutabilityType.IMMUTABLE) {
             throw new Error("character " + id + " is immutable.");
         }
-        if (character.mutabilityType === MutabilityType.BINARY_MUTABLE) {
-            throw new Error("character " + id + " need to be BINARY_MUTABLE.");
-        }
-
 
         if (parseBoolean(isPositiveEffect)) {
             character.hp = checkIntAndRound(0, 100, character.hp + randomize(0, 10));
@@ -189,11 +185,8 @@ GenesisDB.prototype = {
 
     setCharacterAttributes: function (id, hp, mp, str, int, san, luck, charm) {
         const character = this.GenesisCharacter.get(id);
-        if (character.mutabilityType === MutabilityType.IMMUTABLE) {
-            throw new Error("Character " + id + " is immutable.");
-        }
-        if (character.mutabilityType != MutabilityType.FULLY_MUTABLE) {
-            throw new Error("Character " + id + " need to be FULLY_MUTABLE.");
+        if (character.mutabilityType !== MutabilityType.FULLY_MUTABLE) {
+            throw new Error("Character " + id + " needs to be FULLY_MUTABLE.");
         }
 
         character.hp = checkIntAndRound(0, 100, hp);
@@ -217,10 +210,10 @@ GenesisDB.prototype = {
         } catch (err) {
             throw new Error("Errored when deserialize JSON: " + err.message);
         }
-        const characterToInsert = new Character();
+        const characterToInsert = new Character(characterJson.name,
+            checkIntAndRound(0, MutabilityType.MAX_TYPE_SYMBOL, characterJson.mutabilityType));
 
         if (this.checkLegal(characterJson)) {
-            characterToInsert.name = characterJson.name;
             characterToInsert.hp = checkIntAndRound(0, 100, characterJson.hp);
             characterToInsert.mp = checkIntAndRound(0, 100, characterJson.mp);
             characterToInsert.str = checkIntAndRound(0, 100, characterJson.str);
@@ -228,7 +221,6 @@ GenesisDB.prototype = {
             characterToInsert.san = checkIntAndRound(0, 100, characterJson.san);
             characterToInsert.luck = checkIntAndRound(0, 100, characterJson.luck);
             characterToInsert.charm = checkIntAndRound(0, 100, characterJson.charm);
-            characterToInsert.mutabilityType = checkIntAndRound(0, MutabilityType.MAX_TYPE_SYMBOL, characterJson.mutabilityType);
 
             this.GenesisCharacter.set(this.characterNo, characterToInsert);
             this.characterNo++;
