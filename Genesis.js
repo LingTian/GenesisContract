@@ -215,12 +215,14 @@ GenesisDB.prototype = {
             replaced = replaced.replace(/^.+?{/,'{').replace(/\\/g, '').replace(/(")+/g, '\"');
             characterJson = JSON.parse(replaced);
         } catch (err) {
-            throw new Error("Errored when deserialize JSON: " + err.message);
+            throw new Error("Errored when deserialize JSON: " + err);
         }
-        const characterToInsert = new Character(characterJson.name,
-            checkIntAndRound(0, MutabilityType.MAX_TYPE_SYMBOL, characterJson.mutabilityType));
 
-        if (this.checkLegal(characterJson)) {
+        let characterToInsert;
+        try {
+            characterToInsert = new Character(characterJson.name,
+                checkIntAndRound(0, MutabilityType.MAX_TYPE_SYMBOL, characterJson.mutabilityType));
+
             characterToInsert.hp = checkIntAndRound(0, 100, characterJson.hp);
             characterToInsert.mp = checkIntAndRound(0, 100, characterJson.mp);
             characterToInsert.str = checkIntAndRound(0, 100, characterJson.str);
@@ -228,7 +230,11 @@ GenesisDB.prototype = {
             characterToInsert.san = checkIntAndRound(0, 100, characterJson.san);
             characterToInsert.luck = checkIntAndRound(0, 100, characterJson.luck);
             characterToInsert.charm = checkIntAndRound(0, 100, characterJson.charm);
+        } catch (err) {
+            throw new Error("Errored when deserialize JSON: " + err);
+        }
 
+        if (this.checkLegal(characterToInsert)) {
             this.GenesisCharacter.set(this.characterNo, characterToInsert);
             this.characterNo++;
         } else {
