@@ -19,7 +19,7 @@ const MutabilityType = Object.freeze({
 });
 
 /**
- * Utility Method
+ * Utility Methods
  */
 function randomize(lower, upper) {
     return Math.floor((Math.random() * (upper - lower) + lower));
@@ -75,6 +75,7 @@ class Character {
         this.charm = 50;
         //mutabilityType is an immutable attribute which is set only once at construction
         this.mutabilityType = mutabilityType;
+        this.optionalAttr = {};
     }
 
     initialRandomize() {
@@ -135,6 +136,17 @@ GenesisDB.prototype = {
         return this.GenesisCharacter.get(id);
     },
 
+    //Range Query
+    getCharacterRange(start, end) {
+        const selected = [];
+        let left = Math.max(0, start);
+        let right = Math.min(end, this.characterNo - 1);
+        for (let i = left; i < right + 1; i++) {
+            selected.push(this.GenesisCharacter.get(i));
+        }
+        return selected;
+    },
+
     getCharacterNo: function () {
         return this.characterNo;
     },
@@ -190,7 +202,9 @@ GenesisDB.prototype = {
      */
     getCharacterRandomStrFormat: function () {
         const characterRandom = new Character();
-        characterRandom.initialRandomize();
+        characterRandom.initialRandomize()
+        characterRandom.optionalAttr['dummy1'] = 'dummy1';
+        characterRandom.optionalAttr['dummy2'] = 'dummy2';
         return characterRandom.serialize();
     },
 
@@ -259,6 +273,16 @@ GenesisDB.prototype = {
         return this.GenesisCharacter.get(id);
     },
 
+    setOptionalAttribute: function (id, optAttrKey, optAttrValue) {
+        const character = this.GenesisCharacter.get(id);
+        if (character.mutabilityType !== MutabilityType.FULLY_MUTABLE) {
+            throw new Error("Character " + id + " needs to be FULLY_MUTABLE.");
+        }
+
+        character.optionalAttr[optAttrKey] = optAttrValue;
+        this.GenesisCharacter.set(id, character);
+    },
+
     /**
      * Insert Character
      * @param jsonStr: new character json
@@ -286,6 +310,7 @@ GenesisDB.prototype = {
         characterToInsert.san = checkIntAndRound(0, 100, characterJson.san);
         characterToInsert.luck = checkIntAndRound(0, 100, characterJson.luck);
         characterToInsert.charm = checkIntAndRound(0, 100, characterJson.charm);
+        characterToInsert.optionalAttr = characterJson.optionalAttr;
 
         if (this.checkLegal(characterToInsert)) {
             this.GenesisCharacter.set(this.characterNo, characterToInsert);
