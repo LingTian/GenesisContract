@@ -41,18 +41,14 @@ function checkIntAndRound(lower, upper, numberToCheck) {
 }
 
 function parseBoolean (string) {
-    let bool;
-    bool = (function() {
-        switch (false) {
-            case string.toLowerCase() !== 'true':
-                return true;
-            case string.toLowerCase() !== 'false':
-                return false;
-        }
-    })();
-    if (typeof bool === "boolean") {
-        return bool;
+    if (string.toLowerCase() === 'true') {
+        return true;
     }
+
+    if (string.toLowerCase() === 'false') {
+        return false;
+    }
+
     throw Error(string + " is not a boolean");
 }
 
