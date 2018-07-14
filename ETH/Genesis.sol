@@ -54,7 +54,6 @@ using SafeMath for uint256;
 
 //Genesis parameter
 uint public characterNo=3;
-uint public callno=0;
 uint public version=1;
 
 
@@ -87,17 +86,67 @@ function getCharacterNo() view returns(uint _characterNo){
 return characterNo;
 }
 
-function getCallNo() view returns(uint _callno){
-return callno;
-}
-
 function setCharacterAttributes(uint _id, uint _hp, uint _mp, uint _str, uint _inteli, uint _san, uint _luck, uint _charm){
 //require check
 require(characters[_id].mt == 2);
-string name = characters[_id].name;
-uint unChangedmt=characters[_id].mt;
+//read directly from mem
+Character affectedCharacter=characters[_id];
 
-characters[_id]=Character(name, _hp, _mp, _str, _inteli, _san, _luck, _charm, unChangedmt);
+
+affectedCharacter.hp=_hp;
+affectedCharacter.mp=_mp;
+affectedCharacter.str=_str;
+affectedCharacter.inteli=_inteli;
+affectedCharacter.san=_san;
+affectedCharacter.luck=_luck;
+affectedCharacter.charm=_charm;
+
+//need rewrite as a function
+if(affectedCharacter.hp <0){
+affectedCharacter.hp = 0;
+}else if(affectedCharacter.hp>100){
+affectedCharacter.hp = 100;
+
+}else if(affectedCharacter.mp<0){
+affectedCharacter.mp = 0;
+
+}else if(affectedCharacter.mp>100){
+affectedCharacter.mp = 100;
+
+}else if(affectedCharacter.str<0){
+affectedCharacter.str = 0;
+
+}else if(affectedCharacter.str>100){
+affectedCharacter.str = 100;
+
+}else if(affectedCharacter.inteli<0){
+affectedCharacter.inteli = 0;
+
+}else if(affectedCharacter.inteli>100){
+affectedCharacter.inteli = 100;
+
+}else if(affectedCharacter.san<0){
+affectedCharacter.san = 0;
+
+}else if(affectedCharacter.san>100){
+affectedCharacter.san = 100;
+
+}else if(affectedCharacter.luck<0){
+affectedCharacter.luck = 0;
+
+}else if(affectedCharacter.luck>100){
+affectedCharacter.luck = 100;
+
+}else if(affectedCharacter.charm<0){
+affectedCharacter.charm = 0;
+
+}else if(affectedCharacter.charm>100){
+affectedCharacter.charm = 100;
+
+}
+
+
+characters[_id]=affectedCharacter;
 
 }
 
@@ -127,6 +176,7 @@ affectedCharacter.charm=affectedCharacter.charm+getRand();
 
 
 }
+//need rewrite as a function
 if(affectedCharacter.hp <0){
 affectedCharacter.hp = 0;
 }else if(affectedCharacter.hp>100){
