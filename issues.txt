@@ -4,5 +4,11 @@ ETH
 3.对数值的binary影响
 
 --------
+
 NAS
-1.pull request
+1.pull request 	(fixed by shuyi)
+
+--------
+
+EOS
+1. Draft version done (not test cuz my Mac only have 4GB RAM)
