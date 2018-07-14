@@ -92,6 +92,8 @@ return callno;
 }
 
 function setCharacterAttributes(uint _id, uint _hp, uint _mp, uint _str, uint _inteli, uint _san, uint _luck, uint _charm){
+//require check
+require(characters[_id].mt == 2);
 string name = characters[_id].name;
 uint unChangedmt=characters[_id].mt;
 
@@ -99,13 +101,113 @@ characters[_id]=Character(name, _hp, _mp, _str, _inteli, _san, _luck, _charm, un
 
 }
 
-function insertCharacter(string _name, uint _hp, uint _mp, uint _str, uint _inteli, uint _san, uint _luck, uint _charm, uint _mt) returns (uint _id){
+function affectCharacter(uint _id, uint isPositiveEffect){
+require(characters[_id].mt != 0);
+Character affectedCharacter=characters[_id];
+if(isPositiveEffect==0){
 
+affectedCharacter.hp=affectedCharacter.hp-getRand();
+affectedCharacter.mp=affectedCharacter.mp-getRand();
+affectedCharacter.str=affectedCharacter.str-getRand();
+affectedCharacter.inteli=affectedCharacter.inteli-getRand();
+affectedCharacter.san=affectedCharacter.san-getRand();
+affectedCharacter.luck=affectedCharacter.luck-getRand();
+affectedCharacter.charm=affectedCharacter.charm-getRand();
+
+
+}else if(isPositiveEffect==1){
+
+affectedCharacter.hp=affectedCharacter.hp+getRand();
+affectedCharacter.mp=affectedCharacter.mp+getRand();
+affectedCharacter.str=affectedCharacter.str+getRand();
+affectedCharacter.inteli=affectedCharacter.inteli+getRand();
+affectedCharacter.san=affectedCharacter.san+getRand();
+affectedCharacter.luck=affectedCharacter.luck+getRand();
+affectedCharacter.charm=affectedCharacter.charm+getRand();
+
+
+}
+if(affectedCharacter.hp <0){
+affectedCharacter.hp = 0;
+}else if(affectedCharacter.hp>100){
+affectedCharacter.hp = 100;
+
+}else if(affectedCharacter.mp<0){
+affectedCharacter.mp = 0;
+
+}else if(affectedCharacter.mp>100){
+affectedCharacter.mp = 100;
+
+}else if(affectedCharacter.str<0){
+affectedCharacter.str = 0;
+
+}else if(affectedCharacter.str>100){
+affectedCharacter.str = 100;
+
+}else if(affectedCharacter.inteli<0){
+affectedCharacter.inteli = 0;
+
+}else if(affectedCharacter.inteli>100){
+affectedCharacter.inteli = 100;
+
+}else if(affectedCharacter.san<0){
+affectedCharacter.san = 0;
+
+}else if(affectedCharacter.san>100){
+affectedCharacter.san = 100;
+
+}else if(affectedCharacter.luck<0){
+affectedCharacter.luck = 0;
+
+}else if(affectedCharacter.luck>100){
+affectedCharacter.luck = 100;
+
+}else if(affectedCharacter.charm<0){
+affectedCharacter.charm = 0;
+
+}else if(affectedCharacter.charm>100){
+affectedCharacter.charm = 100;
+
+}
+
+
+characters[_id] = affectedCharacter;
+}
+
+
+function getRand() public view returns (uint256 _rand){
+uint256 rand = uint256(sha256(block.timestamp, block.number-rand-1)) % 10 +1;
+return rand;
+}
+function insertCharacter(string _name, uint _hp, uint _mp, uint _str, uint _inteli, uint _san, uint _luck, uint _charm, uint _mt) returns (uint _id){
+uint checkresult = checkLegal( _hp, _mp, _str, _inteli, _san, _luck, _charm, _mt);
+require(checkresult == 1);
 //需要check合法性
 characterNo++;
 characters.push(Character(_name, _hp, _mp, _str, _inteli, _san, _luck, _charm, _mt));
 
 return characterNo;
+
+}
+function checkLegal(uint _hp, uint _mp, uint _str, uint _inteli, uint _san, uint _luck, uint _charm, uint _mt) returns (uint _checkresult){
+if((_hp<0)||(_hp>100)){
+return 0;
+}else if((_mp<0)||(_mp>100)){
+return 0;
+}else if((_str<0)||(_str>100)){
+return 0;
+}else if((_inteli<0)||(_inteli>100)){
+return 0;
+}else if((_san<0)||(_san>100)){
+return 0;
+}else if((_luck<0)||(_luck>100)){
+return 0;
+}else if((_charm<0)||(_charm>100)){
+return 0;
+}else if((_mt<0)||(_mt>2)){
+return 0;
+}
+return 1;
 
 }
 
@@ -121,7 +223,7 @@ uint _luck,
 uint _charm,
 uint _mt
 ) {
-callno++;
+
 Character storage _characterinfo = characters[_characterId];
 
 _name = _characterinfo.name;
