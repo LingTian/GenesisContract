@@ -1,6 +1,9 @@
-# CrossChainSynchronization
+# Project: Voyager(CrossChainSynchronization)
+## About
+Project Voyager is a project which provide the cross chain synchronization between different Chain. This will provide consensus on different decentralized projects. We see many chain raised ETH for cross chain project but do not see many convinient cross chain solutions. That why we start Project Voyager. We build a MVP which do cross chain synchronization between NAS and ETH. We hope more developers will join us and make Voyager more powerful!
+
 ## Overview
-The CrossChainSynchronization is a stateless process to synchorize the contents between Genesis contracts on differnt chains. 
+The CrossChainSynchronization is a stateless process to synchonize the contents between Genesis contracts on differnt chains. 
 For example, let's say we have 2 Genesis contracts on Nebulas and ETH.
 
 In Nebulas Genesis contract, we have 2 characters:
@@ -36,5 +39,9 @@ For instance, following are the IDs to be synchronized:
 2. For each ID of each contract, we add the corresponding character to all other contracts. 
 If the character is successfully adde to all other contracts, we can safely remove the ID from `<Contract>.newlyAddedIDs`,
 otherwise the ID will be retried in the next InterChainSynchronization process.
+
+## Vision
+
+We hope Project: Voyager can do cross chain synchronization between hundreds different blockchain. We also hope Project Voyager will bring convinience for more DApp developers!
 
 ![High Level Design of the CrossChainSynchronization Process](CrossContractSynchronization.svg)
