@@ -26,10 +26,12 @@ The process of InterChainSynchronization can has 2 steps:
 1. get the IDs of the characters to be synchronized of each contracts from the `<Contract>.newlyAddedIDs`, which are the newly added IDs since last synchronization. 
 For instance, following are the IDs to be synchronized:
 
+```javascript
     {
-      "NAS": [nasID1, nasID2]
+      "NAS": [nasID1, nasID2],
       "ETH": [ethID1]
     }
+```
 
 2. For each ID of each contract, we add the corresponding character to all other contracts. 
 If the character is successfully adde to all other contracts, we can safely remove the ID from `<Contract>.newlyAddedIDs`,
