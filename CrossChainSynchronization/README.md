@@ -22,7 +22,7 @@ The InterChainSynchronization code is open-sourced and is triggered every certai
     
 ## High Level Design
 
-The process of InterChainSynchronization can has 2 steps:
+The process of CrossChainSynchronization can has 2 steps:
 1. get the IDs of the characters to be synchronized of each contracts from the `<Contract>.newlyAddedIDs`, which are the newly added IDs since last synchronization. 
 For instance, following are the IDs to be synchronized:
 
@@ -37,4 +37,4 @@ For instance, following are the IDs to be synchronized:
 If the character is successfully adde to all other contracts, we can safely remove the ID from `<Contract>.newlyAddedIDs`,
 otherwise the ID will be retried in the next InterChainSynchronization process.
 
-![High Level Design of the InterChainSynchronization Process](InterContractSynchronization.svg)
+![High Level Design of the CrossChainSynchronization Process](CrossContractSynchronization.svg)
