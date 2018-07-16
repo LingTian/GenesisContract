@@ -37,4 +37,4 @@ For instance, following are the IDs to be synchronized:
 If the character is successfully adde to all other contracts, we can safely remove the ID from `<Contract>.newlyAddedIDs`,
 otherwise the ID will be retried in the next InterChainSynchronization process.
 
-![High Level Design of the InterChainSynchronization Process](InterContractSynchronization.svg)
+![High Level Design of the CrossChainSynchronization Process](CrossContractSynchronization.svg)
