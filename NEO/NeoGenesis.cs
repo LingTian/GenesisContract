@@ -50,20 +50,20 @@ namespace NeoGenesis
            public static int charm  = 50;
 
        }
-        // Character Class
-      public class Character
-         {
+               [Serializable]
+               public class Character
+               {
 
-             public string name = "Adam1";
-             public int hp  = 100;
-             public int mp  = 100;
-             public int str  = 50;
-             public int inteligence  = 50;
-             public int san  = 50;
-             public int luck  = 50;
-             public int charm  = 50;
+                 public string name ;
+                            public string hp ;
+                            public string mp ;
+                            public string str;
+                            public string inteligence;
+                            public string san;
+                            public string luck;
+                            public string charm;
+               }
 
-         }
     // Get Genesis Character
   private static object[] getCharacterInfo(BigInteger id)
         {
