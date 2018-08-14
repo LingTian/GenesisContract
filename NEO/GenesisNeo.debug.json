@@ -1,0 +1,605 @@
+{
+    "avm": {
+        "name": "GenesisNeo",
+        "hash": "fce28aecd5c64eb72f2978de5a9cb9d3"
+    },
+    "compiler": {
+        "name": "neo-boa",
+        "version": "0.4.8"
+    },
+    "files": [
+        {
+            "id": 1,
+            "url": "/Users/shuyi/personal/neo-py/neo-python/smart-contracts/GenesisNeo.py"
+        },
+        {
+            "id": 2,
+            "url": "/Users/shuyi/personal/neo-py/neo-python/venv/lib/python3.7/site-packages/boa/builtins.py"
+        }
+    ],
+    "map": [
+        {
+            "start": 13,
+            "end": 21,
+            "file": 1,
+            "method": "Main",
+            "line": 2,
+            "file_line_no": 7
+        },
+        {
+            "start": 22,
+            "end": 29,
+            "file": 1,
+            "method": "Main",
+            "line": 3,
+            "file_line_no": 8
+        },
+        {
+            "start": 30,
+            "end": 70,
+            "file": 1,
+            "method": "Main",
+            "line": 4,
+            "file_line_no": 9
+        },
+        {
+            "start": 71,
+            "end": 75,
+            "file": 1,
+            "method": "Main",
+            "line": 5,
+            "file_line_no": 10
+        },
+        {
+            "start": 76,
+            "end": 95,
+            "file": 1,
+            "method": "Main",
+            "line": 7,
+            "file_line_no": 12
+        },
+        {
+            "start": 96,
+            "end": 105,
+            "file": 1,
+            "method": "Main",
+            "line": 8,
+            "file_line_no": 13
+        },
+        {
+            "start": 106,
+            "end": 115,
+            "file": 1,
+            "method": "Main",
+            "line": 9,
+            "file_line_no": 14
+        },
+        {
+            "start": 116,
+            "end": 138,
+            "file": 1,
+            "method": "Main",
+            "line": 11,
+            "file_line_no": 16
+        },
+        {
+            "start": 139,
+            "end": 160,
+            "file": 1,
+            "method": "ConvertToList",
+            "line": 12,
+            "file_line_no": 115
+        },
+        {
+            "start": 161,
+            "end": 166,
+            "file": 1,
+            "method": "ConvertToList",
+            "line": 2,
+            "file_line_no": 105
+        },
+        {
+            "start": 167,
+            "end": 175,
+            "file": 1,
+            "method": "ConvertToList",
+            "line": 3,
+            "file_line_no": 106
+        },
+        {
+            "start": 176,
+            "end": 237,
+            "file": 1,
+            "method": "ConvertToList",
+            "line": 4,
+            "file_line_no": 107
+        },
+        {
+            "start": 238,
+            "end": 249,
+            "file": 1,
+            "method": "ConvertToList",
+            "line": 5,
+            "file_line_no": 108
+        },
+        {
+            "start": 250,
+            "end": 255,
+            "file": 1,
+            "method": "ConvertToList",
+            "line": 6,
+            "file_line_no": 109
+        },
+        {
+            "start": 256,
+            "end": 271,
+            "file": 1,
+            "method": "ConvertToList",
+            "line": 7,
+            "file_line_no": 110
+        },
+        {
+            "start": 272,
+            "end": 285,
+            "file": 1,
+            "method": "ConvertToString",
+            "line": 8,
+            "file_line_no": 99
+        },
+        {
+            "start": 286,
+            "end": 292,
+            "file": 1,
+            "method": "ConvertToString",
+            "line": 2,
+            "file_line_no": 93
+        },
+        {
+            "start": 293,
+            "end": 301,
+            "file": 1,
+            "method": "ConvertToString",
+            "line": 3,
+            "file_line_no": 94
+        },
+        {
+            "start": 302,
+            "end": 363,
+            "file": 1,
+            "method": "ConvertToString",
+            "line": 4,
+            "file_line_no": 95
+        },
+        {
+            "start": 364,
+            "end": 375,
+            "file": 1,
+            "method": "ConvertToString",
+            "line": 5,
+            "file_line_no": 96
+        },
+        {
+            "start": 376,
+            "end": 383,
+            "file": 1,
+            "method": "ConvertToString",
+            "line": 6,
+            "file_line_no": 97
+        },
+        {
+            "start": 384,
+            "end": 395,
+            "file": 1,
+            "method": "ConvertToString",
+            "line": 7,
+            "file_line_no": 98
+        },
+        {
+            "start": 396,
+            "end": 414,
+            "file": 1,
+            "method": "ConvertToString",
+            "line": 8,
+            "file_line_no": 99
+        },
+        {
+            "start": 415,
+            "end": 432,
+            "file": 1,
+            "method": "ConvertToString",
+            "line": 9,
+            "file_line_no": 100
+        },
+        {
+            "start": 433,
+            "end": 443,
+            "file": 1,
+            "method": "ConvertToString",
+            "line": 10,
+            "file_line_no": 101
+        },
+        {
+            "start": 444,
+            "end": 452,
+            "file": 1,
+            "method": "NewInstance",
+            "line": 11,
+            "file_line_no": 89
+        },
+        {
+            "start": 453,
+            "end": 560,
+            "file": 1,
+            "method": "NewInstance",
+            "line": 2,
+            "file_line_no": 80
+        },
+        {
+            "start": 561,
+            "end": 574,
+            "file": 1,
+            "method": "ConvertFromList",
+            "line": 12,
+            "file_line_no": 75
+        },
+        {
+            "start": 575,
+            "end": 582,
+            "file": 1,
+            "method": "ConvertFromList",
+            "line": 2,
+            "file_line_no": 65
+        },
+        {
+            "start": 583,
+            "end": 591,
+            "file": 1,
+            "method": "ConvertFromList",
+            "line": 3,
+            "file_line_no": 66
+        },
+        {
+            "start": 592,
+            "end": 652,
+            "file": 1,
+            "method": "ConvertFromList",
+            "line": 4,
+            "file_line_no": 67
+        },
+        {
+            "start": 653,
+            "end": 662,
+            "file": 1,
+            "method": "ConvertFromList",
+            "line": 5,
+            "file_line_no": 68
+        },
+        {
+            "start": 663,
+            "end": 678,
+            "file": 1,
+            "method": "ConvertFromList",
+            "line": 6,
+            "file_line_no": 69
+        },
+        {
+            "start": 679,
+            "end": 690,
+            "file": 1,
+            "method": "ConvertFromList",
+            "line": 8,
+            "file_line_no": 71
+        },
+        {
+            "start": 691,
+            "end": 707,
+            "file": 1,
+            "method": "ConvertFromList",
+            "line": 9,
+            "file_line_no": 72
+        },
+        {
+            "start": 708,
+            "end": 722,
+            "file": 1,
+            "method": "InsertCharacter",
+            "line": 10,
+            "file_line_no": 46
+        },
+        {
+            "start": 723,
+            "end": 738,
+            "file": 1,
+            "method": "InsertCharacter",
+            "line": 3,
+            "file_line_no": 39
+        },
+        {
+            "start": 739,
+            "end": 793,
+            "file": 1,
+            "method": "InsertCharacter",
+            "line": 5,
+            "file_line_no": 41
+        },
+        {
+            "start": 794,
+            "end": 823,
+            "file": 1,
+            "method": "InsertCharacter",
+            "line": 6,
+            "file_line_no": 42
+        },
+        {
+            "start": 824,
+            "end": 834,
+            "file": 1,
+            "method": "InsertCharacter",
+            "line": 9,
+            "file_line_no": 45
+        },
+        {
+            "start": 835,
+            "end": 864,
+            "file": 1,
+            "method": "InsertCharacter",
+            "line": 11,
+            "file_line_no": 47
+        },
+        {
+            "start": 865,
+            "end": 870,
+            "file": 1,
+            "method": "InsertCharacter",
+            "line": 12,
+            "file_line_no": 48
+        },
+        {
+            "start": 871,
+            "end": 913,
+            "file": 1,
+            "method": "InsertCharacter",
+            "line": 13,
+            "file_line_no": 49
+        },
+        {
+            "start": 914,
+            "end": 923,
+            "file": 1,
+            "method": "InsertCharacter",
+            "line": 14,
+            "file_line_no": 50
+        },
+        {
+            "start": 924,
+            "end": 963,
+            "file": 1,
+            "method": "InsertCharacter",
+            "line": 16,
+            "file_line_no": 52
+        },
+        {
+            "start": 964,
+            "end": 973,
+            "file": 1,
+            "method": "InsertCharacter",
+            "line": 18,
+            "file_line_no": 54
+        },
+        {
+            "start": 974,
+            "end": 1005,
+            "file": 1,
+            "method": "InsertCharacter",
+            "line": 20,
+            "file_line_no": 56
+        },
+        {
+            "start": 1006,
+            "end": 1029,
+            "file": 1,
+            "method": "InsertCharacter",
+            "line": 21,
+            "file_line_no": 57
+        },
+        {
+            "start": 1030,
+            "end": 1058,
+            "file": 1,
+            "method": "InsertCharacter",
+            "line": 23,
+            "file_line_no": 59
+        },
+        {
+            "start": 1059,
+            "end": 1087,
+            "file": 1,
+            "method": "InsertCharacter",
+            "line": 24,
+            "file_line_no": 60
+        },
+        {
+            "start": 1088,
+            "end": 1101,
+            "file": 1,
+            "method": "GetCharacter",
+            "line": 26,
+            "file_line_no": 44
+        },
+        {
+            "start": 1102,
+            "end": 1141,
+            "file": 1,
+            "method": "GetCharacter",
+            "line": 2,
+            "file_line_no": 20
+        },
+        {
+            "start": 1142,
+            "end": 1149,
+            "file": 1,
+            "method": "GetCharacter",
+            "line": 4,
+            "file_line_no": 22
+        },
+        {
+            "start": 1150,
+            "end": 1179,
+            "file": 1,
+            "method": "GetCharacter",
+            "line": 6,
+            "file_line_no": 24
+        },
+        {
+            "start": 1180,
+            "end": 1209,
+            "file": 1,
+            "method": "GetCharacter",
+            "line": 7,
+            "file_line_no": 25
+        },
+        {
+            "start": 1210,
+            "end": 1215,
+            "file": 1,
+            "method": "GetCharacter",
+            "line": 8,
+            "file_line_no": 26
+        },
+        {
+            "start": 1216,
+            "end": 1223,
+            "file": 1,
+            "method": "GetCharacter",
+            "line": 9,
+            "file_line_no": 27
+        },
+        {
+            "start": 1224,
+            "end": 1233,
+            "file": 1,
+            "method": "GetCharacter",
+            "line": 10,
+            "file_line_no": 28
+        },
+        {
+            "start": 1234,
+            "end": 1289,
+            "file": 1,
+            "method": "GetCharacter",
+            "line": 11,
+            "file_line_no": 29
+        },
+        {
+            "start": 1290,
+            "end": 1294,
+            "file": 1,
+            "method": "GetCharacter",
+            "line": 12,
+            "file_line_no": 30
+        },
+        {
+            "start": 1295,
+            "end": 1328,
+            "file": 1,
+            "method": "GetCharacter",
+            "line": 14,
+            "file_line_no": 32
+        },
+        {
+            "start": 1329,
+            "end": 1352,
+            "file": 1,
+            "method": "GetCharacter",
+            "line": 15,
+            "file_line_no": 33
+        },
+        {
+            "start": 1353,
+            "end": 1377,
+            "file": 2,
+            "method": "range",
+            "line": 17,
+            "file_line_no": 90
+        },
+        {
+            "start": 1378,
+            "end": 1389,
+            "file": 2,
+            "method": "range",
+            "line": 9,
+            "file_line_no": 82
+        },
+        {
+            "start": 1390,
+            "end": 1398,
+            "file": 2,
+            "method": "range",
+            "line": 11,
+            "file_line_no": 84
+        },
+        {
+            "start": 1399,
+            "end": 1404,
+            "file": 2,
+            "method": "range",
+            "line": 13,
+            "file_line_no": 86
+        },
+        {
+            "start": 1405,
+            "end": 1412,
+            "file": 2,
+            "method": "range",
+            "line": 15,
+            "file_line_no": 88
+        },
+        {
+            "start": 1413,
+            "end": 1424,
+            "file": 2,
+            "method": "range",
+            "line": 17,
+            "file_line_no": 90
+        },
+        {
+            "start": 1425,
+            "end": 1436,
+            "file": 2,
+            "method": "range",
+            "line": 18,
+            "file_line_no": 91
+        },
+        {
+            "start": 1437,
+            "end": 1447,
+            "file": 2,
+            "method": "range",
+            "line": 19,
+            "file_line_no": 92
+        },
+        {
+            "start": 1448,
+            "end": 1457,
+            "file": 2,
+            "method": "range",
+            "line": 20,
+            "file_line_no": 93
+        },
+        {
+            "start": 1458,
+            "end": 1475,
+            "file": 2,
+            "method": "range",
+            "line": 21,
+            "file_line_no": 94
+        },
+        {
+            "start": 1476,
+            "end": 1481,
+            "file": 2,
+            "line": 23
+        }
+    ],
+    "breakpoints": []
+}
