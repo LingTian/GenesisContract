@@ -46,9 +46,6 @@ library SafeMath {
     }
 }
 
-/**
-* Genesis contract
-*/
 contract Genesis {
     using SafeMath for uint256;
 
@@ -67,21 +64,22 @@ contract Genesis {
         uint luck;
         uint charm;
         uint mt;
+        string optionalAttrs;
     }
 
     Character[] characters;
 
     function Genesis() public {
-        characters.push(Character("Adam0", 100, 100, 50, 50, 50, 50, 50, 0));
-        characters.push(Character("Adam1", 100, 100, 50, 50, 50, 50, 50, 1));
-        characters.push(Character("Adam2", 100, 100, 50, 50, 50, 50, 50, 2));
+        characters.push(Character("Adam0", 100, 100, 50, 50, 50, 50, 50, 0, ""));
+        characters.push(Character("Adam1", 100, 100, 50, 50, 50, 50, 50, 1, ""));
+        characters.push(Character("Adam2", 100, 100, 50, 50, 50, 50, 50, 2, ""));
     }
 
     function getCharacterNo() view returns (uint _characterNo){
         return characterNo;
     }
 
-    function setCharacterAttributes(uint _id, uint _hp, uint _mp, uint _str, uint _intelli, uint _san, uint _luck, uint _charm){
+    function setCharacterAttributes(uint _id, uint _hp, uint _mp, uint _str, uint _intelli, uint _san, uint _luck, uint _charm, string _optionalAttrs){
         //require check
         require(characters[_id].mt == 2);
         //read directly from mem
@@ -94,6 +92,7 @@ contract Genesis {
         affectedCharacter.san = _san;
         affectedCharacter.luck = _luck;
         affectedCharacter.charm = _charm;
+        affectedCharacter.optionalAttrs = _optionalAttrs;
 
         //need rewrite as a function
         if (affectedCharacter.hp < 0) {
@@ -214,12 +213,11 @@ contract Genesis {
         return rand;
     }
 
-    function insertCharacter(string _name, uint _hp, uint _mp, uint _str, uint _intelli, uint _san, uint _luck, uint _charm, uint _mt) returns (uint _id){
-        uint checkResult = checkLegal(_hp, _mp, _str, _intelli, _san, _luck, _charm, _mt);
-        require(checkResult == 1);
+    function insertCharacter(string _name, uint _hp, uint _mp, uint _str, uint _intelli, uint _san, uint _luck, uint _charm, uint _mt, string _optionalAttrs) returns (uint){
+        require(checkLegal(_hp, _mp, _str, _intelli, _san, _luck, _charm, _mt) == 1);
         //需要check合法性
         characterNo++;
-        characters.push(Character(_name, _hp, _mp, _str, _intelli, _san, _luck, _charm, _mt));
+        characters.push(Character(_name, _hp, _mp, _str, _intelli, _san, _luck, _charm, _mt, _optionalAttrs));
 
         return characterNo;
     }
@@ -255,7 +253,8 @@ contract Genesis {
         uint _san,
         uint _luck,
         uint _charm,
-        uint _mt
+        uint _mt,
+        string _optionalAttrs
     ) {
 
         Character storage _characterInfo = characters[_characterId];
@@ -269,5 +268,6 @@ contract Genesis {
         _luck = _characterInfo.luck;
         _charm = _characterInfo.charm;
         _mt = _characterInfo.mt;
+        _optionalAttrs = _characterInfo.optionalAttrs;
     }
 }
