@@ -201,7 +201,6 @@ contract Genesis {
 
         } else if (affectedCharacter.charm > 100) {
             affectedCharacter.charm = 100;
-
         }
 
         characters[_id] = affectedCharacter;
@@ -223,19 +222,19 @@ contract Genesis {
     }
 
     function checkLegal(uint _hp, uint _mp, uint _str, uint _intelli, uint _san, uint _luck, uint _charm, uint _mt) returns (uint _checkresult){
-        if ((_hp < 0) || (_hp > 100)) {
+        if ((_hp < 0) || (_hp > 9999)) {
             return 0;
-        } else if ((_mp < 0) || (_mp > 100)) {
+        } else if ((_mp < 0) || (_mp > 9999)) {
             return 0;
-        } else if ((_str < 0) || (_str > 100)) {
+        } else if ((_str < 0) || (_str > 9999)) {
             return 0;
-        } else if ((_intelli < 0) || (_intelli > 100)) {
+        } else if ((_intelli < 0) || (_intelli > 9999)) {
             return 0;
-        } else if ((_san < 0) || (_san > 100)) {
+        } else if ((_san < 0) || (_san > 9999)) {
             return 0;
-        } else if ((_luck < 0) || (_luck > 100)) {
+        } else if ((_luck < 0) || (_luck > 9999)) {
             return 0;
-        } else if ((_charm < 0) || (_charm > 100)) {
+        } else if ((_charm < 0) || (_charm > 9999)) {
             return 0;
         } else if ((_mt < 0) || (_mt > 2)) {
             return 0;

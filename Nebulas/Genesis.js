@@ -198,7 +198,7 @@ GenesisDB.prototype = {
      */
     getCharacterRandomStrFormat: function () {
         const characterRandom = new Character();
-        characterRandom.initialRandomize()
+        characterRandom.initialRandomize();
         characterRandom.optionalAttr['dummy1'] = 'dummy1';
         characterRandom.optionalAttr['dummy2'] = 'dummy2';
         return characterRandom.serialize();
@@ -289,11 +289,9 @@ GenesisDB.prototype = {
     insertCharacter: function (jsonStr) {
         let characterJson;
         try {
-            let replaced = jsonStr.substr(0, jsonStr.lastIndexOf("}") + 1);
-            replaced = replaced.replace(/^.+?{/,'{').replace(/\\/g, '').replace(/(")+/g, '\"');
-            characterJson = JSON.parse(replaced);
+            characterJson = JSON.parse(jsonStr);
         } catch (err) {
-            throw new Error("Errored when deserialize JSON: " + err);
+            throw new Error(`Errored when deserialize JSON: ${jsonStr}` + err);
         }
 
         const characterToInsert = new Character(characterJson.name,
@@ -318,19 +316,19 @@ GenesisDB.prototype = {
 
     checkLegal: function (characterToInsert) {
 
-        if (characterToInsert.hp < 0 || characterToInsert.hp > 100) {
+        if (characterToInsert.hp < 0 || characterToInsert.hp > 9999) {
             return false;
-        } else if (characterToInsert.mp < 0 || characterToInsert.mp > 100) {
+        } else if (characterToInsert.mp < 0 || characterToInsert.mp > 9999) {
             return false;
-        } else if (characterToInsert.str < 0 || characterToInsert.str > 100) {
+        } else if (characterToInsert.str < 0 || characterToInsert.str > 9999) {
             return false;
-        } else if (characterToInsert.int < 0 || characterToInsert.int > 100) {
+        } else if (characterToInsert.int < 0 || characterToInsert.int > 9999) {
             return false;
-        } else if (characterToInsert.san < 0 || characterToInsert.san > 100) {
+        } else if (characterToInsert.san < 0 || characterToInsert.san > 9999) {
             return false;
-        } else if (characterToInsert.luck < 0 || characterToInsert.luck > 100) {
+        } else if (characterToInsert.luck < 0 || characterToInsert.luck > 9999) {
             return false;
-        } else if (characterToInsert.charm < 0 || characterToInsert.charm > 100) {
+        } else if (characterToInsert.charm < 0 || characterToInsert.charm > 9999) {
             return false;
         } else if (characterToInsert.mutabilityType < 0 || characterToInsert.mutabilityType > MutabilityType.MAX_TYPE_SYMBOL) {
             return false;
