@@ -59,3 +59,8 @@ You can also customize new Adams with new stats, new consensus mechanism. Let's 
 My name is Ling, I am a DApp developer. My friend Shuyi and I first implement this idea and build the first Genesis contract. It is an open source project and anyone can use it freely!
 
 If you would like to be a collaborator, please send me a email to danjinxiangsi@gmail.com
+
+### Games base on Genesis
+Cell Evolution: http://cellevo.net
+Last Trip: https://puzzle-lt.com
+
